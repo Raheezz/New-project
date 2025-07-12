@@ -75,32 +75,9 @@
         document.getElementById("paper").addEventListener("click", () => playGame("paper"));
         document.getElementById("scissor").addEventListener("click", () => playGame("scissor"));
 
-        // choices.forEach(choice => {
-        //     document.getElementById(choice + "-computer").classList.remove("computer-choice");
-        // });
-
-        // function playGame(userChoice) {
-        //     const computerChoice = getComputerChoice();
-        //     const result = getResult(userChoice, computerChoice);
-
-        //     for (let i = 0; i < choices.length; i++) {
-        //         let choice = choices[i];
-        //         document.getElementById(choice + "-computer").classList.remove("computer-choice");
-        //     }
-
-        //     document.getElementById(computerChoice + "-computer").classList.add("computer-choice");
-
-        //     setTimeout(() => {
-        //         document.getElementById("result-text").innerText = `You chose: ${userChoice}\nComputer chose: ${computerChoice}\n${result}`;
-        //         document.getElementById("popup").style.display = "flex";
-        //         document.body.style.overflow = "hidden";
-        //     }, 900);
-        // }
-
-
         function playGame(userChoice) {
             let highlightInterval;
-            let animationDuration = 1000; 
+            let animationDuration = 1000;
             let intervalSpeed = 100;
 
             for (let i = 0; i < choices.length; i++) {
@@ -136,10 +113,28 @@
                     document.getElementById("result-text").innerText = `You chose: ${userChoice}\nComputer chose: ${computerChoice}\n${result}`;
                     document.getElementById("popup").style.display = "flex";
                     document.body.style.overflow = "hidden";
-                }, 1000);
+
+                    const resultText = `You chose: ${userChoice}\nComputer chose: ${computerChoice}\n${result}`;
+                    document.getElementById("result-text").innerText = resultText;
+
+                    const layerElement = document.querySelector(".layer");
+
+                    layerElement.classList.remove("popup-win", "popup-draw", "popup-lose");
+
+                    if (result.includes("win")) {
+                        layerElement.classList.add("popup-win");
+                    } else if (result.includes("draw")) {
+                        layerElement.classList.add("popup-draw");
+                    } else {
+                        layerElement.classList.add("popup-lose");
+                    }
+
+                    document.getElementById("popup").style.display = "flex";
+                    document.body.style.overflow = "hidden";
+
+                }, 900);
             }, animationDuration);
         }
-
 
         function closePopup() {
             document.getElementById("popup").style.display = "none";
