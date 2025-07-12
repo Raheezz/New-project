@@ -17,13 +17,13 @@
 
     <div class="main">
         <h4>AI:</h4>
-        <button class="btn" id="rock-computer">
+        <button class="aibtn" id="rock-computer">
             <img class="icon" src="hand.png" alt="image">
         </button>
-        <button class="btn" id="paper-computer">
+        <button class="aibtn" id="paper-computer">
             <img class="icon" src="hand-paper.png" alt="">
         </button>
-        <button class="btn" id="scissor-computer">
+        <button class="aibtn" id="scissor-computer">
             <img class="icon" src="scissors.png" alt="">
         </button>
     </div>
@@ -68,7 +68,7 @@
             ) {
                 return "You win!";
             }
-            return "Computer wins!";
+            return "You Lose!";
         }
 
         document.getElementById("rock").addEventListener("click", () => playGame("rock"));
