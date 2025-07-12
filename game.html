@@ -79,22 +79,65 @@
         //     document.getElementById(choice + "-computer").classList.remove("computer-choice");
         // });
 
+        // function playGame(userChoice) {
+        //     const computerChoice = getComputerChoice();
+        //     const result = getResult(userChoice, computerChoice);
+
+        //     for (let i = 0; i < choices.length; i++) {
+        //         let choice = choices[i];
+        //         document.getElementById(choice + "-computer").classList.remove("computer-choice");
+        //     }
+
+        //     document.getElementById(computerChoice + "-computer").classList.add("computer-choice");
+
+        //     setTimeout(() => {
+        //         document.getElementById("result-text").innerText = `You chose: ${userChoice}\nComputer chose: ${computerChoice}\n${result}`;
+        //         document.getElementById("popup").style.display = "flex";
+        //         document.body.style.overflow = "hidden";
+        //     }, 900);
+        // }
+
+
         function playGame(userChoice) {
-            const computerChoice = getComputerChoice();
-            const result = getResult(userChoice, computerChoice);
+            let highlightInterval;
+            let animationDuration = 1000; 
+            let intervalSpeed = 100;
 
             for (let i = 0; i < choices.length; i++) {
                 let choice = choices[i];
                 document.getElementById(choice + "-computer").classList.remove("computer-choice");
             }
 
-            document.getElementById(computerChoice + "-computer").classList.add("computer-choice");
+            highlightInterval = setInterval(() => {
+                const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+
+                for (let i = 0; i < choices.length; i++) {
+                    let choice = choices[i];
+                    document.getElementById(choice + "-computer").classList.remove("computer-choice");
+                }
+
+                document.getElementById(randomChoice + "-computer").classList.add("computer-choice");
+            }, intervalSpeed);
 
             setTimeout(() => {
-                document.getElementById("result-text").innerText = `You chose: ${userChoice}\nComputer chose: ${computerChoice}\n${result}`;
-                document.getElementById("popup").style.display = "flex";
-                document.body.style.overflow = "hidden";
-            }, 900);
+                clearInterval(highlightInterval);
+
+                const computerChoice = getComputerChoice();
+                const result = getResult(userChoice, computerChoice);
+
+                for (let i = 0; i < choices.length; i++) {
+                    let choice = choices[i];
+                    document.getElementById(choice + "-computer").classList.remove("computer-choice");
+                }
+
+                document.getElementById(computerChoice + "-computer").classList.add("computer-choice");
+
+                setTimeout(() => {
+                    document.getElementById("result-text").innerText = `You chose: ${userChoice}\nComputer chose: ${computerChoice}\n${result}`;
+                    document.getElementById("popup").style.display = "flex";
+                    document.body.style.overflow = "hidden";
+                }, 1000);
+            }, animationDuration);
         }
 
 
