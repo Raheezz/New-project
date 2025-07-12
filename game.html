@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="game.css">
+
+    <head>
+    </head>
+
+<body>
+    <h1>Let's Play a Game</h1>
+    <p>"Choose one"</p>
+
+    <div class="main">
+        <h4>AI:</h4>
+        <button class="btn" id="rock-computer">
+            <img class="icon" src="hand.png" alt="image">
+        </button>
+        <button class="btn" id="paper-computer">
+            <img class="icon" src="hand-paper.png" alt="">
+        </button>
+        <button class="btn" id="scissor-computer">
+            <img class="icon" src="scissors.png" alt="">
+        </button>
+    </div>
+
+    <div class="main">
+        <h4>You:</h4>
+        <button class="btn" id="rock">
+            <img class="icon" src="hand.png" alt="image">
+        </button>
+        <button class="btn" id="paper">
+            <img class="icon" src="hand-paper.png" alt="">
+        </button>
+        <button class="btn" id="scissor">
+            <img class="icon" src="scissors.png" alt="">
+        </button>
+    </div>
+
+    <div class="pop-up" id="popup">
+        <div class="layer">
+            <p id="result-text"></p>
+            <button onclick="closePopup()" style="display: block; margin: 0 auto; padding: 10px 20px;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const choices = ["rock", "paper", "scissor"];
+
+        function getComputerChoice() {
+            const randomIndex = Math.floor(Math.random() * choices.length);
+            return choices[randomIndex];
+
+        }
+
+        function getResult(userChoice, computerChoice) {
+            if (userChoice === computerChoice) {
+                return "It's a draw!";
+            }
+            if (
+                (userChoice === "rock" && computerChoice === "scissor") ||
+                (userChoice === "paper" && computerChoice === "rock") ||
+                (userChoice === "scissor" && computerChoice === "paper")
+            ) {
+                return "You win!";
+            }
+            return "Computer wins!";
+        }
+
+        document.getElementById("rock").addEventListener("click", () => playGame("rock"));
+        document.getElementById("paper").addEventListener("click", () => playGame("paper"));
+        document.getElementById("scissor").addEventListener("click", () => playGame("scissor"));
+
+        function playGame(userChoice) {
+            const computerChoice = getComputerChoice();
+            const result = getResult(userChoice, computerChoice);
+
+            // choices.forEach(choice => {
+            //     document.getElementById(choice + "-computer").classList.remove("computer-choice");
+            // });
+
+            for (let i = 0; i < choices.length; i++) {
+                let choice = choices[i];
+                document.getElementById(choice + "-computer").classList.remove("computer-choice");
+            }
+
+
+
+            document.getElementById(computerChoice + "-computer").classList.add("computer-choice");
+
+            document.getElementById("result-text").innerText = `You chose: ${userChoice}\nComputer chose: ${computerChoice}\n${result}`;
+            document.getElementById("popup").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+    </script>
+
+</body>
+
+</html>
