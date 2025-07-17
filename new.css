@@ -1,0 +1,50 @@
+body{
+    background-color: black;
+    position: relative;
+    overflow: auto;
+}
+h1{
+    text-align: center;
+    font-size: 70px;
+    color: rgb(0, 172, 245);
+}
+h2{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+    font-size: 25px;
+    color: rgb(203, 214, 105);
+    padding: 20px;
+}
+
+.main {
+    color: white;
+    width: 60vh;
+    display: flex;
+    margin-top: 90px;
+    margin-left: 500px;
+}
+.aibtn{
+    background-color: rgb(255, 253, 253);
+    color: rgb(0, 0, 0);
+    border-radius: 15px;
+    padding:25px;
+    margin: 10px;
+    cursor: none;
+}
+
+.btn {
+    background-color: rgb(255, 253, 253);
+    color: rgb(0, 0, 0);
+    border-radius: 15px;
+    padding:20px;
+    margin: 8px;
+}
+.icon{
+    width: 100%;
+}
+.btn:hover{
+    background-color: rgb(18, 200, 18);
+}

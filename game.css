@@ -49,8 +49,7 @@ p{
   background-color: rgb(218, 38, 38);
   transition: 0.3s;
 }
-.pop-up {
-    display: none;
+#popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -61,10 +60,10 @@ p{
     align-items: center;
     justify-content:center;
     z-index: 9999;
+    display: none;
+
 }
-#popup{
-    display: flex;
-}
+
 .layer {
     background-color: rgb(113, 223, 69);
     padding: 30px 40px;
